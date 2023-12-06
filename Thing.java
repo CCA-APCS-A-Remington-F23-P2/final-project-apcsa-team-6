@@ -13,7 +13,7 @@ public class Thing
         height = 20;
     }
 
-    public boolean didOverlap(MovingThing other)
+    public boolean didOverlap(Thing other)
     {
     if (getY() + getHeight() < other.getY() || getY() > other.getY() + other.getHeight())
       return false;
