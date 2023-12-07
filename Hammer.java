@@ -7,30 +7,12 @@ import javax.imageio.ImageIO;
 
 public class Hammer extends Thing
 {
-
+  private Image image;
   private int speed;
-
-  public Hammer()
-  {
-    this(0,0,20,20);
-    speed = 5;
-  }
-
-  public Hammer(int x, int y)
-  {
-    this(x,y,20,20);
-    speed = 5;
-  }
-
-  public Hammer(int x, int y, int s)
-  {
-    this(x,y,20,20);
-    speed = s;
-  }
 
   public Hammer(int x, int y, int w, int h, int s)
   {
-    super(x,y,w,h);
+    super(x, y, w, h);
     speed = s;
     try
     {
@@ -43,7 +25,7 @@ public class Hammer extends Thing
     }
   }
 
-  public setSpeed(int s)
+  public void setSpeed(int s)
   {
     speed = s;
   }
@@ -63,6 +45,11 @@ public class Hammer extends Thing
       setX(getX() - speed);
     if (direction == "RIGHT")
       setX(getX() + speed);
+  }
+
+  public void draw(Graphics window)
+  {
+    window.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
   }
 
 }

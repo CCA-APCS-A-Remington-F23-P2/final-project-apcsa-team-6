@@ -1,4 +1,7 @@
-public class Thing
+import java.awt.Color;
+import java.awt.Graphics;
+
+public abstract class Thing
 {
     private int xPos;
     private int yPos;
@@ -20,31 +23,6 @@ public class Thing
     if (getX() + getWidth() < other.getX() || getX() > other.getX() + other.getWidth())
       return false;
     return true;
-    }
-
-    public void copyTransparent(Picture fromPic, int startRow, int startCol)
-    {
-      Pixel fromPixel = null;
-      Pixel toPixel = null;
-      Pixel[][] toPixels = this.getPixels2D();
-      Pixel[][] fromPixels = fromPic.getPixels2D();
-      for (int fromRow = 0, toRow = startRow; 
-           fromRow < fromPixels.length &&
-           toRow < toPixels.length; 
-           fromRow++, toRow++)
-      {
-        for (int fromCol = 0, toCol = startCol; 
-             fromCol < fromPixels[0].length &&
-             toCol < toPixels[0].length;  
-             fromCol++, toCol++)
-        {
-          fromPixel = fromPixels[fromRow][fromCol];
-          toPixel = toPixels[toRow][toCol];
-          if (fromPixel.getBlue() != 255 && fromPixel.getRed() != 255 && fromPixel.getGreen() != 255) {
-            toPixel.setColor(fromPixel.getColor());
-          }
-        }
-      }   
     }
 
     public abstract void draw(Graphics window);
