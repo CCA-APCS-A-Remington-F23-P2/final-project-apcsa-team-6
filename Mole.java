@@ -9,7 +9,7 @@ public class Mole extends Thing
 {
   public Mole(int x, int y)
   {
-    super(x,y);
+    super(x, y, 40, 40);
     try
     {
       URL url = getClass().getResource("mole.png");
@@ -18,5 +18,10 @@ public class Mole extends Thing
     catch(Exception e)
     {
     }
+  }
+
+  public void draw(Graphics window)
+  {
+    window.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
   }
 }
