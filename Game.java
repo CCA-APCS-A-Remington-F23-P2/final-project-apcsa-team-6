@@ -17,18 +17,27 @@ public class Game extends Canvas implements KeyListener, Runnable {
   // instance variables
   private Hammer hammer;
   private Grid grid;
-  private Mole mole;
-  private Bomb bomb;
-  
+
+  private int score;
+  private int highScore;
+  private boolean gameOver;
+
   private BufferedImage back;
   private boolean[] keys;
+
+  private long currentTime;
 
   public Game() {
     // instantiate objects
     hammer = new Hammer(100, 100, 80, 80, 5);
     grid = new Grid(3);
-    mole = new Mole(100, 100, 80, 80);
-    bomb = new Bomb (185, 100, 80, 80);
+
+    currentTime = System.currentTimeMillis();
+
+
+    score = 0;
+    highScore = 0;
+    gameOver = false;
 
     keys = new boolean[1];
     setBackground(Color.LIGHT_GRAY);
@@ -49,18 +58,75 @@ public class Game extends Canvas implements KeyListener, Runnable {
     graphToBack.setColor(Color.LIGHT_GRAY);
     graphToBack.fillRect(0, 0, 455, 485);
 
-    if (keys[0]) {
-      hammer.pressed();
+    if (!gameOver){
+      if (keys[0]) {
+        hammer.pressed();
+        for (int i = 0; i < grid.getMoles.size(); i++){
+          if (hammer.didOverlap(grid.getMoles().get(i))){
+            score++;
+            grid.removeMole(i);
+          }
+          else if (hammer.didOverlap(grid.getBombs().get(i))){
+            gameOver = true;
+          }
+        }
+      }
+      else {
+        hammer.released();
+      }
+
+      // change direction if hammer leaves the grid
+      if (hammer.getX() < 100 || hammer.getX() > 355){
+        hammer.setXSpeed(-hammer.getXSpeed());
+      }
+      if (hammer.getY() < 100 || hammer.getY() > 355){
+        hammer.setYSpeed(-hammer.getYSpeed());
+      }
+
+      // randomly draw mole and bombs
+
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 3)) {
+        grid.addMole();
+        currentTime = System.currentTimeMillis();
+      }
+
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 3)) {
+        grid.addBomb();
+        currentTime = System.currentTimeMillis();
+      }
+
+      // // for (int i = 1; i < grid.getMole().length; i++){
+      // //   if (grid.getMole.get(i-1).getTime() == 2000){
+      // //     if(grid.getMole.get(i).getTime()>(Math.random()*2000)+2000){
+      // //       grid.getMole.get(i).draw(graphToBack);
+      // //     }
+      // //   }
+      // // }
+
+      // remove moles and bombs
+      for (int i = 0; i < grid.getMoles().size(); i++){
+        if (grid.getMoles().get(i).getTime() == 2000){
+          grid.removeMole(i);
+        }
+      }
+      for (int j = 0; j < grid.getBombs().size(); j++){
+        if (grid.getBombs().get(j).getTime() == 2000){
+          grid.removeBomb(j);
+        }
+      }
+
+      // draw methods
+      grid.draw(graphToBack);
+      hammer.move();
+      hammer.draw(graphToBack);
     }
-    else {
-      hammer.released();
+    if (gameOver){
+      if (score > highScore)highScore = score;
+        graphToBack.setColor(Color.BLACK);
+      graphToBack.drawString("Score: " + score, 200, 190);
+      graphToBack.drawString("High Score: " + highScore, 200, 220);
     }
-    
-    // draw methods
-    grid.draw(graphToBack);
-    mole.draw(graphToBack);
-    bomb.draw(graphToBack);
-    hammer.draw(graphToBack);
+
     twoDGraph.drawImage(back, null, 0, 0);
   }
 
@@ -94,4 +160,5 @@ public class Game extends Canvas implements KeyListener, Runnable {
     catch (Exception e) {
     }
   }
+
 }
