@@ -17,17 +17,21 @@ public class Game extends Canvas implements KeyListener, Runnable {
   // instance variables
   private Hammer hammer;
   private Grid grid;
-
+  private Mole mole;
+  private Bomb bomb;
+  
   private BufferedImage back;
   private boolean[] keys;
 
   public Game() {
     // instantiate objects
-    hammer = new Hammer(100, 100, 80, 160, 5);
+    hammer = new Hammer(100, 100, 80, 80, 5);
     grid = new Grid(3);
+    mole = new Mole(100, 100, 80, 80);
+    bomb = new Bomb (185, 100, 80, 80);
 
     keys = new boolean[1];
-    setBackground(Color.BLACK);
+    setBackground(Color.LIGHT_GRAY);
     setVisible(true);
     new Thread(this).start();
     addKeyListener(this);
@@ -42,11 +46,8 @@ public class Game extends Canvas implements KeyListener, Runnable {
     if (back == null)
       back = (BufferedImage) (createImage(getWidth(), getHeight()));
     Graphics graphToBack = back.createGraphics();
-
-    graphToBack.setColor(Color.BLUE);
-    graphToBack.drawString("Whack-a-Mole", 25, 50);
     graphToBack.setColor(Color.LIGHT_GRAY);
-    graphToBack.fillRect(0, 0, 800, 600);
+    graphToBack.fillRect(0, 0, 455, 485);
 
     if (keys[0]) {
       hammer.pressed();
@@ -56,8 +57,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
     }
     
     // draw methods
-    hammer.draw(graphToBack);
     grid.draw(graphToBack);
+    mole.draw(graphToBack);
+    bomb.draw(graphToBack);
+    hammer.draw(graphToBack);
     twoDGraph.drawImage(back, null, 0, 0);
   }
 
