@@ -9,6 +9,7 @@ public class Mole extends Thing
 {
 
   private Image image;
+  private int time;
 
   public Mole(int x, int y, int w, int h)
   {
@@ -21,10 +22,17 @@ public class Mole extends Thing
     catch(Exception e)
     {
     }
+    time = 0;
+  }
+
+  public int getTime()
+  {
+    return time;
   }
 
   public void draw(Graphics window)
   {
     window.drawImage(image, getX(), getY(), getWidth(), getHeight(),null);
+    time += 5;
   }
 }
