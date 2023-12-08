@@ -38,7 +38,7 @@ public class Hammer extends Thing
   {
     try
     {
-      URL url = getClass().getResource("media/hammer2.png");
+      URL url = getClass().getResource("media/hammer4.png");
       image = ImageIO.read(url);
     }
     catch(Exception e)
@@ -50,7 +50,7 @@ public class Hammer extends Thing
   {
     try
     {
-      URL url = getClass().getResource("media/hammer.png");
+      URL url = getClass().getResource("media/hammer3.png");
       image = ImageIO.read(url);
     }
     catch(Exception e)
