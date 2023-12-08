@@ -8,15 +8,17 @@ import javax.imageio.ImageIO;
 public class Hammer extends Thing
 {
   private Image image;
-  private int speed;
+  private int xSpeed;
+  private int ySpeed;
 
   public Hammer(int x, int y, int w, int h, int s)
   {
     super(x, y, w, h);
-    speed = s;
+    xSpeed = s;
+    ySpeed = s;
     try
     {
-      URL url = getClass().getResource("media/hammer.png");
+      URL url = getClass().getResource("media/hammer3.png");
       image = ImageIO.read(url);
     }
     catch(Exception e)
@@ -24,21 +26,31 @@ public class Hammer extends Thing
     }
   }
 
-  public void setSpeed(int s)
+  public void setXSpeed(int s)
   {
-    speed = s;
+    xSpeed = s;
   }
 
-  public int getSpeed() 
+  public int getXSpeed() 
   {
-    return speed;
+    return xSpeed;
   }
-  
+
+  public void setYSpeed(int s)
+  {
+    ySpeed = s;
+  }
+
+  public int getYSpeed()
+  {
+    return ySpeed;
+  }
+
   public void pressed()
   {
     try
     {
-      URL url = getClass().getResource("media/hammer2.png");
+      URL url = getClass().getResource("media/hammer4.png");
       image = ImageIO.read(url);
     }
     catch(Exception e)
@@ -50,7 +62,7 @@ public class Hammer extends Thing
   {
     try
     {
-      URL url = getClass().getResource("media/hammer.png");
+      URL url = getClass().getResource("media/hammer3.png");
       image = ImageIO.read(url);
     }
     catch(Exception e)
@@ -58,16 +70,10 @@ public class Hammer extends Thing
     }
   }
 
-  public void move(String direction)
+  public void move()
   {
-    if (direction.equals("DOWN"))
-      setY(getY() + speed);
-    if (direction == "UP")
-      setY(getY() - speed);
-    if (direction == "LEFT")
-      setX(getX() - speed);
-    if (direction == "RIGHT")
-      setX(getX() + speed);
+    setY(getY() + ySpeed);
+    setX(getX() + xSpeed);
   }
 
   public void draw(Graphics window)
