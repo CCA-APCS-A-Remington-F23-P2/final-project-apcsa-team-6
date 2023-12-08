@@ -7,12 +7,14 @@ import javax.imageio.ImageIO;
 
 public class Bomb extends Thing
 {
-  public Bomb(int x, int y)
+  private Image image;
+
+  public Bomb(int x, int y, int w, int h)
   {
-    super(x,y,40,40);
+    super(x, y, w, h);
     try
     {
-      URL url = getClass().getResource("bomb.png");
+      URL url = getClass().getResource("media/bomb.png");
       image = ImageIO.read(url);
     }
     catch(Exception e)
@@ -22,6 +24,6 @@ public class Bomb extends Thing
 
   public void draw(Graphics window)
   {
-    window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+    window.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
   }
 }

@@ -16,12 +16,11 @@ public class Hammer extends Thing
     speed = s;
     try
     {
-      URL url = getClass().getResource("hammer.png");
+      URL url = getClass().getResource("media/hammer.png");
       image = ImageIO.read(url);
     }
     catch(Exception e)
     {
-
     }
   }
 
@@ -33,6 +32,30 @@ public class Hammer extends Thing
   public int getSpeed() 
   {
     return speed;
+  }
+  
+  public void pressed()
+  {
+    try
+    {
+      URL url = getClass().getResource("media/hammer2.png");
+      image = ImageIO.read(url);
+    }
+    catch(Exception e)
+    {
+    }
+  }
+
+  public void released()
+  {
+    try
+    {
+      URL url = getClass().getResource("media/hammer.png");
+      image = ImageIO.read(url);
+    }
+    catch(Exception e)
+    {
+    }
   }
 
   public void move(String direction)
@@ -51,5 +74,4 @@ public class Hammer extends Thing
   {
     window.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
   }
-
 }

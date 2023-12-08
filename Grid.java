@@ -16,7 +16,7 @@ public class Grid
     holes = new ArrayList<Hole>();
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
-        add(new Hole(75 + j * 50, 25 + i * 50, 40, 40));
+        add(new Hole(100 + j * 85, 100 + i * 85, 80, 80));
       }
     }
     this.size = size;
@@ -32,18 +32,5 @@ public class Grid
     for (Hole h : holes) {
       h.draw(window);
     }
-  }
-
-  public int getSize() {
-    return size;
-  }
-
-  public int num() {
-    return holes.size();
-  }
-
-  public String toString()
-  {
-    return "";
   }
 }
