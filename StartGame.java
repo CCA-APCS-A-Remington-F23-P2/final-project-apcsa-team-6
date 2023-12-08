@@ -3,8 +3,8 @@ import java.awt.Component;
 
 public class StartGame extends JFrame
 {
-  private static final int WIDTH = 800;
-  private static final int HEIGHT = 600;
+  private static final int WIDTH = 455;
+  private static final int HEIGHT = 485;
 
   public StartGame()
   {
