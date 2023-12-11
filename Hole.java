@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 public class Hole extends Thing
 {
   private Image image;
+  private boolean occupied;
 
   public Hole(int x, int y, int w, int h)
   {
@@ -20,6 +21,21 @@ public class Hole extends Thing
     catch(Exception e)
     {
     }
+  }
+
+  public boolean getOccupied()
+  {
+    return occupied;
+  }
+
+  public void setOccupied()
+  {
+    occupied = true;
+  }
+
+  public void setUnoccupied()
+  {
+    occupied = false;
   }
 
   public void draw(Graphics window)
