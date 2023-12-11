@@ -29,7 +29,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
   public Game() {
     // instantiate objects
-    hammer = new Hammer(100, 100, 80, 80, 5);
+    hammer = new Hammer(100, 100, 80, 80, 5, 4);
     grid = new Grid(3);
 
     currentTime = System.currentTimeMillis();
@@ -61,7 +61,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
     if (!gameOver){
       if (keys[0]) {
         hammer.pressed();
-        for (int i = 0; i < grid.getMoles.size(); i++){
+        for (int i = 0; i < grid.getMoles().size(); i++){
           if (hammer.didOverlap(grid.getMoles().get(i))){
             score++;
             grid.removeMole(i);
@@ -76,21 +76,21 @@ public class Game extends Canvas implements KeyListener, Runnable {
       }
 
       // change direction if hammer leaves the grid
-      if (hammer.getX() < 100 || hammer.getX() > 355){
+      if (hammer.getX() < 100 || hammer.getX() + hammer.getWidth() > 355){
         hammer.setXSpeed(-hammer.getXSpeed());
       }
-      if (hammer.getY() < 100 || hammer.getY() > 355){
+      if (hammer.getY() < 100 || hammer.getY() + hammer.getHeight() > 355){
         hammer.setYSpeed(-hammer.getYSpeed());
       }
 
       // randomly draw mole and bombs
 
-      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 3)) {
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 3000)) {
         grid.addMole();
         currentTime = System.currentTimeMillis();
       }
 
-      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 3)) {
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 3000)) {
         grid.addBomb();
         currentTime = System.currentTimeMillis();
       }
@@ -105,12 +105,12 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
       // remove moles and bombs
       for (int i = 0; i < grid.getMoles().size(); i++){
-        if (grid.getMoles().get(i).getTime() == 2000){
+        if (grid.getMoles().get(i).getTime() == 500){
           grid.removeMole(i);
         }
       }
       for (int j = 0; j < grid.getBombs().size(); j++){
-        if (grid.getBombs().get(j).getTime() == 2000){
+        if (grid.getBombs().get(j).getTime() == 500){
           grid.removeBomb(j);
         }
       }
@@ -120,11 +120,12 @@ public class Game extends Canvas implements KeyListener, Runnable {
       hammer.move();
       hammer.draw(graphToBack);
     }
-    if (gameOver){
+
+    if (gameOver) {
       if (score > highScore)highScore = score;
         graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 200, 190);
-      graphToBack.drawString("High Score: " + highScore, 200, 220);
+      graphToBack.drawString("High Score: " + highScore, 185, 220);
     }
 
     twoDGraph.drawImage(back, null, 0, 0);
