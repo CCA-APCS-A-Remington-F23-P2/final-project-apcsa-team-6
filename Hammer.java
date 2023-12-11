@@ -11,11 +11,11 @@ public class Hammer extends Thing
   private int xSpeed;
   private int ySpeed;
 
-  public Hammer(int x, int y, int w, int h, int s)
+  public Hammer(int x, int y, int w, int h, int xs, int ys)
   {
     super(x, y, w, h);
-    xSpeed = s;
-    ySpeed = s;
+    xSpeed = xs;
+    ySpeed = ys;
     try
     {
       URL url = getClass().getResource("media/hammer3.png");
