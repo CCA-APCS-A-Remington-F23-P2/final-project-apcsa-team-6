@@ -29,7 +29,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
   public Game() {
     // instantiate objects
-    hammer = new Hammer(100, 100, 80, 80, 5, 4);
+    hammer = new Hammer(100, 100, 80, 80, 3, 2);
     grid = new Grid(3);
 
     currentTime = System.currentTimeMillis();
@@ -57,6 +57,8 @@ public class Game extends Canvas implements KeyListener, Runnable {
     Graphics graphToBack = back.createGraphics();
     graphToBack.setColor(Color.LIGHT_GRAY);
     graphToBack.fillRect(0, 0, 455, 485);
+    graphToBack.setColor(Color.BLACK);
+    graphToBack.drawString("Score: " + score, 15, 15);
 
     if (!gameOver){
       if (keys[0]) {
@@ -85,12 +87,12 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
       // randomly draw mole and bombs
 
-      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 3000)) {
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*5000 + 2000)) {
         grid.addMole();
         currentTime = System.currentTimeMillis();
       }
 
-      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 3000)) {
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*5000 + 2000)) {
         grid.addBomb();
         currentTime = System.currentTimeMillis();
       }
@@ -105,12 +107,12 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
       // remove moles and bombs
       for (int i = 0; i < grid.getMoles().size(); i++){
-        if (grid.getMoles().get(i).getTime() == 500){
+        if (grid.getMoles().get(i).getTime() == 2000){
           grid.removeMole(i);
         }
       }
       for (int j = 0; j < grid.getBombs().size(); j++){
-        if (grid.getBombs().get(j).getTime() == 500){
+        if (grid.getBombs().get(j).getTime() == 2000){
           grid.removeBomb(j);
         }
       }
@@ -122,8 +124,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
     }
 
     if (gameOver) {
-      if (score > highScore)highScore = score;
-        graphToBack.setColor(Color.BLACK);
+      if (score > highScore) {
+        highScore = score;
+      }
+      graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 200, 190);
       graphToBack.drawString("High Score: " + highScore, 185, 220);
     }
