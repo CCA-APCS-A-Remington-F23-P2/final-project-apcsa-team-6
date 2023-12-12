@@ -8,7 +8,7 @@ public abstract class Thing
   private int width;
   private int height;
 
-  public Thing(int x, int y, int w, int h)
+  public Thing(int x, int y, int w, int h) 
   {
     xPos = x;
     yPos = y;
@@ -18,9 +18,9 @@ public abstract class Thing
 
   public boolean didOverlap(Thing other)
   {
-  if (getY() + getHeight() < other.getY() || getY() > other.getY() + other.getHeight())
+  if (getY() + getHeight() < other.getY() + 40 || getY() - 40 > other.getY() + other.getHeight())
     return false;
-  if (getX() + getWidth() < other.getX() || getX() > other.getX() + other.getWidth())
+  if (getX() + getWidth() < other.getX() - 40 || getX() - 40 > other.getX() + other.getWidth())
     return false;
   return true;
   }
