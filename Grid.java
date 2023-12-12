@@ -12,8 +12,6 @@ public class Grid
   private List <Mole> moles;
   private List <Bomb> bombs;
 
-  int size;
-
   public Grid(int size)
   {
     holes = new ArrayList<Hole>();
@@ -24,8 +22,7 @@ public class Grid
       for (int j = 0; j < size; j++) {
         holes.add(new Hole(100 + j * 85, 100 + i * 85, 80, 80));
       }
-    }
-    this.size = size;
+    }  
   }
 
   public List<Mole> getMoles()
@@ -54,8 +51,15 @@ public class Grid
 
   public void removeMole(int i)
   {
+    int xPos = moles.get(i).getX();
+    int yPos = moles.get(i).getY();
     moles.remove(i);
-    holes.get(i).setUnoccupied();
+
+    for (Hole h: holes) {
+      if (h.getX() == xPos && h.getY() == yPos) {
+        h.setUnoccupied();
+      }
+    }
   }
 
   public void addBomb()
@@ -74,8 +78,15 @@ public class Grid
 
   public void removeBomb(int i)
   {
-    bombs.remove(i);
-    holes.get(i).setUnoccupied();
+    int xPos = bombs.get(i).getX();
+    int yPos = bombs.get(i).getY();
+      bombs.remove(i);
+
+    for (Hole h: holes) {
+      if (h.getX() == xPos && h.getY() == yPos) {
+        h.setUnoccupied();
+      }
+    }
   }
 
   public void draw(Graphics window)
