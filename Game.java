@@ -85,14 +85,13 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.setYSpeed(-hammer.getYSpeed());
       }
 
-      // randomly draw mole and bombs
-
-      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 2000)) {
+      // randomly add mole and bombs
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*4000 + 1000)) {
         grid.addMole();
         currentTime = System.currentTimeMillis();
       }
 
-      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 2000)) {
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*4000 + 1000)) {
         grid.addBomb();
         currentTime = System.currentTimeMillis();
       }
@@ -100,12 +99,12 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
       // remove moles and bombs
       for (int i = 0; i < grid.getMoles().size(); i++){
-        if (grid.getMoles().get(i).getTime() == 500){
+        if (grid.getMoles().get(i).getTime() == 1000){
           grid.removeMole(i);
         }
       }
       for (int j = 0; j < grid.getBombs().size(); j++){
-        if (grid.getBombs().get(j).getTime() == 500){
+        if (grid.getBombs().get(j).getTime() == 1000){
           grid.removeBomb(j);
         }
       }
@@ -121,7 +120,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
         graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 200, 190);
       graphToBack.drawString("High Score: " + highScore, 185, 220);
-      graphToBack.drawString("press 'r' to restart", 180, 250);
+      graphToBack.drawString("Press 'r' To Restart", 180, 250);
 
       if (keys[1])
       {
