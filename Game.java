@@ -39,7 +39,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
     highScore = 0;
     gameOver = false;
 
-    keys = new boolean[1];
+    keys = new boolean[2];
     setBackground(Color.LIGHT_GRAY);
     setVisible(true);
     new Thread(this).start();
@@ -87,32 +87,25 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
       // randomly draw mole and bombs
 
-      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*5000 + 2000)) {
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 2000)) {
         grid.addMole();
         currentTime = System.currentTimeMillis();
       }
 
-      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*5000 + 2000)) {
+      if (System.currentTimeMillis() - currentTime > (int)(Math.random()*6000 + 2000)) {
         grid.addBomb();
         currentTime = System.currentTimeMillis();
       }
 
-      // // for (int i = 1; i < grid.getMole().length; i++){
-      // //   if (grid.getMole.get(i-1).getTime() == 2000){
-      // //     if(grid.getMole.get(i).getTime()>(Math.random()*2000)+2000){
-      // //       grid.getMole.get(i).draw(graphToBack);
-      // //     }
-      // //   }
-      // // }
 
       // remove moles and bombs
       for (int i = 0; i < grid.getMoles().size(); i++){
-        if (grid.getMoles().get(i).getTime() == 2000){
+        if (grid.getMoles().get(i).getTime() == 500){
           grid.removeMole(i);
         }
       }
       for (int j = 0; j < grid.getBombs().size(); j++){
-        if (grid.getBombs().get(j).getTime() == 2000){
+        if (grid.getBombs().get(j).getTime() == 500){
           grid.removeBomb(j);
         }
       }
@@ -124,12 +117,17 @@ public class Game extends Canvas implements KeyListener, Runnable {
     }
 
     if (gameOver) {
-      if (score > highScore) {
-        highScore = score;
-      }
-      graphToBack.setColor(Color.BLACK);
+      if (score > highScore)highScore = score;
+        graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 200, 190);
       graphToBack.drawString("High Score: " + highScore, 185, 220);
+      graphToBack.drawString("press 'r' to restart", 180, 250);
+
+      if (keys[1])
+      {
+        gameOver = false;
+        score = 0;
+      }
     }
 
     twoDGraph.drawImage(back, null, 0, 0);
@@ -141,6 +139,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
     {
       keys[0] = true;
     }
+    if (e.getKeyCode() == KeyEvent.VK_R)
+    {
+      keys[1] = true;
+    }
     repaint();
   }
 
@@ -149,6 +151,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
     if (e.getKeyCode() == KeyEvent.VK_SPACE)
     {
       keys[0] = false;
+    }
+    if (e.getKeyCode() == KeyEvent.VK_R)
+    {
+      keys[1] = false;
     }
     repaint();
   }
