@@ -68,7 +68,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
             score++;
             grid.removeMole(i);
           }
-          else if (hammer.didOverlap(grid.getBombs().get(i))){
+        }
+        for (int i = 0; i < grid.getBombs().size(); i++){
+          if (hammer.didOverlap(grid.getBombs().get(i))){
             gameOver = true;
           }
         }
