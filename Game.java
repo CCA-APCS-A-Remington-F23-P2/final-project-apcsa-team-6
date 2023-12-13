@@ -74,9 +74,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
     if (gameStart) {
       graphToBack.setColor(Color.BLACK);
-      graphToBack.drawString("Press 1 for Level 1", 225, 140);
-      graphToBack.drawString("Press 2 for Level 2", 225, 165);
-      graphToBack.drawString("Press 3 for Level 3", 225, 190);
+      graphToBack.drawString("Press 1 for Level 1", 225, 160);
+      graphToBack.drawString("Press 2 for Level 2", 225, 185);
+      graphToBack.drawString("Press 3 for Level 3", 225, 210);
 
       if (keys[1]) {
         lev1 = true;
@@ -97,9 +97,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
       graphToBack.drawString("Score: " + score, 15, 15);
 
       if (lev1) {
-        hammer.setXSpeed(2);
-        hammer.setYSpeed(1);
-        bombSpeed = 4000;
+        hammer.setXSpeed(3);
+        hammer.setYSpeed(2);
+        bombSpeed = 3000;
         moleSpeed = 2000;
         removeSpeed = 2000;
         lev1 = false;
@@ -107,20 +107,20 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
       //level 2
       if (lev2) {
-        hammer.setXSpeed(3);
-        hammer.setYSpeed(2);
-        bombSpeed = 3000;
-        moleSpeed = 3000;
+        hammer.setXSpeed(4);
+        hammer.setYSpeed(3);
+        bombSpeed = 2000;
+        moleSpeed = 2000;
         removeSpeed = 1000;
         lev2 = false;
       }
 
       //level 3
       if (lev3) {
-        hammer.setXSpeed(4);
-        hammer.setYSpeed(3);
-        bombSpeed = 2000;
-        moleSpeed = 4000;
+        hammer.setXSpeed(5);
+        hammer.setYSpeed(4);
+        bombSpeed = 1000;
+        moleSpeed = 2000;
         removeSpeed = 750;
         lev3 = false;
       }
@@ -181,7 +181,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
     }
 
     if (gameOver) {
-      if (score > highScore)highScore = score;
+      if (score > highScore) {
+        highScore = score;
+      }
       graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 250, 190);
       graphToBack.drawString("High Score: " + highScore, 240, 215);
