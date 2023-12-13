@@ -15,8 +15,6 @@ import java.util.List;
 public class Game extends Canvas implements KeyListener, Runnable {
 
 
-  //https://www.developer.com/java/java-buttons/
-
   // instance variables
   private Hammer hammer;
   private Grid grid;
@@ -74,22 +72,25 @@ public class Game extends Canvas implements KeyListener, Runnable {
     graphToBack.setColor(Color.LIGHT_GRAY);
     graphToBack.fillRect(0, 0, 540, 570);
 
-    if (gameStart){
+    if (gameStart) {
       graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Press 1 for Level 1", 225, 140);
       graphToBack.drawString("Press 2 for Level 2", 225, 165);
       graphToBack.drawString("Press 3 for Level 3", 225, 190);
 
-      if (keys[2]) lev1 = true;
-      else lev1 = false;
-      if (keys[3]) lev2 = true;
-      else lev2 = false;
-      if (keys[4]) lev3 = true;
-      else lev3 = false;
-
-      gameStart = false;
+      if (keys[1]) {
+        lev1 = true;
+        gameStart = false;
+      } else lev1 = false;
+      if (keys[2]){
+        lev2 = true;
+        gameStart = false;
+      } else lev2 = false;
+      if (keys[3]) {
+        lev3 = true;
+        gameStart = false;
+      } else lev3 = false;
     }
-
 
     if (!gameOver && !gameStart) {
       graphToBack.setColor(Color.BLACK);
