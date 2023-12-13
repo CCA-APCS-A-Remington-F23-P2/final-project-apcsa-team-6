@@ -101,7 +101,8 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.setYSpeed(2);
         bombSpeed = 3000;
         moleSpeed = 2000;
-        removeSpeed = 2000;
+        moleRemoveSpeed = 2000;
+        bombRemoveSpeed = 1000;
         lev1 = false;
       }
 
@@ -111,7 +112,8 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.setYSpeed(3);
         bombSpeed = 2000;
         moleSpeed = 2000;
-        removeSpeed = 1000;
+        moleRemoveSpeed = 1000;
+        bombRemoveSpeed = 2000;
         lev2 = false;
       }
 
@@ -121,7 +123,8 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.setYSpeed(4);
         bombSpeed = 1000;
         moleSpeed = 2000;
-        removeSpeed = 750;
+        moleRemoveSpeed = 750;
+        bombRemoveSpeed = 2500;
         lev3 = false;
       }
 
@@ -164,12 +167,12 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
       // remove moles and bombs
       for (int i = 0; i < grid.getMoles().size(); i++){
-        if (grid.getMoles().get(i).getTime() == removeSpeed){
+        if (grid.getMoles().get(i).getTime() == moleRemoveSpeed){
           grid.removeMole(i);
         }
       }
       for (int j = 0; j < grid.getBombs().size(); j++){
-        if (grid.getBombs().get(j).getTime() == removeSpeed){
+        if (grid.getBombs().get(j).getTime() == bombRemoveSpeed){
           grid.removeBomb(j);
         }
       }
