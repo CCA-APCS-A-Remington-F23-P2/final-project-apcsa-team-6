@@ -184,7 +184,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
       if (score > highScore)highScore = score;
       graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 250, 190);
-      graphToBack.drawString("High Score: " + 0, 240, 215);
+      graphToBack.drawString("High Score: " + highScore, 240, 215);
       graphToBack.drawString("Press 1 for Level 1", 225, 240);
       graphToBack.drawString("Press 2 for Level 2", 225, 265);
       graphToBack.drawString("Press 3 for Level 3", 225, 290);
