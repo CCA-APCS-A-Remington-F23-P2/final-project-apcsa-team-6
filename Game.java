@@ -38,7 +38,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
   public Game() {
     // instantiate objects
     hammer = new Hammer(100, 100, 80, 80, 2, 1);
-    grid = new Grid(3);
+    grid = new Grid(4);
 
     currentTime = System.currentTimeMillis();
 
