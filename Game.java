@@ -28,7 +28,6 @@ public class Game extends Canvas implements KeyListener, Runnable {
   private boolean lev1;
   private boolean lev2;
   private boolean lev3;
-  private int hammerSpeed;
   private int bombSpeed;
   private int moleSpeed;
   private int removeSpeed;
@@ -52,6 +51,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
     lev1 = false;
     lev2 = false;
     lev3 = false;
+    bombSpeed = 0;
+    moleSpeed = 0;
+    removeSpeed = 0;
 
     keys = new boolean[4];
     setBackground(Color.LIGHT_GRAY);
@@ -93,31 +95,34 @@ public class Game extends Canvas implements KeyListener, Runnable {
       graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 15, 15);
 
-      //level 1
       if (lev1) {
-        hammerSpeed = 1;
+        hammer.setXSpeed(2);
+        hammer.setYSpeed(1);
         bombSpeed = 4000;
         moleSpeed = 2000;
         removeSpeed = 2000;
+        lev1 = false;
       }
 
       //level 2
       if (lev2) {
-        hammerSpeed = 2;
+        hammer.setXSpeed(3);
+        hammer.setYSpeed(2);
         bombSpeed = 3000;
         moleSpeed = 3000;
         removeSpeed = 1000;
+        lev2 = false;
       }
 
       //level 3
       if (lev3) {
-        hammerSpeed = 3;
+        hammer.setXSpeed(4);
+        hammer.setYSpeed(3);
         bombSpeed = 2000;
         moleSpeed = 4000;
         removeSpeed = 750;
+        lev3 = false;
       }
-      hammer.setXSpeed(hammerSpeed + 1);
-      hammer.setYSpeed(hammerSpeed);
 
       if (keys[0]) {
         hammer.pressed();
@@ -187,19 +192,19 @@ public class Game extends Canvas implements KeyListener, Runnable {
       {
         gameOver = false;
         score = 0;
-        lev1 = true; lev2 = false; lev3 = false;
+        lev1 = true;
       }
       if (keys[2])
       {
         gameOver = false;
         score = 0;
-        lev1 = false; lev2 = true; lev3 = false;
+        lev2 = true;
       }
       if (keys[3])
       {
         gameOver = false;
         score = 0;
-        lev1 = false; lev2 = false; lev3 = true;
+        lev3 = true;
       }
     }
 
