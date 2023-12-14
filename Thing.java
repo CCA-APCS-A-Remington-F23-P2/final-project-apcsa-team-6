@@ -18,9 +18,9 @@ public abstract class Thing
 
   public boolean didOverlap(Thing other)
   {
-  if (getY() + getHeight() < other.getY() + 40 || getY() - 40 > other.getY() + other.getHeight())
+  if (getY() + getHeight() < other.getY() + 32 || getY() + 32 > other.getY() + other.getHeight())
     return false;
-  if (getX() + getWidth() < other.getX() - 40 || getX() - 40 > other.getX() + other.getWidth())
+  if (getX() + getWidth() < other.getX() - 20 || getX() - 20 > other.getX() + other.getWidth())
     return false;
   return true;
   }

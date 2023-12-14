@@ -30,7 +30,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
   private int moleSpeed;
   private int moleRemoveSpeed;
   private int bombRemoveSpeed;
-  
+
   private BufferedImage back;
   private boolean[] keys;
 
@@ -38,7 +38,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
   public Game() {
     // instantiate objects
-    hammer = new Hammer(100, 100, 80, 80, 2, 1);
+    hammer = new Hammer(100, 100, 40, 62, 2, 1);
     grid = new Grid(4);
 
     currentTime = System.currentTimeMillis();
@@ -54,7 +54,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
     moleSpeed = 0;
     moleRemoveSpeed = 0;
     bombRemoveSpeed = 0;
-    
+
     keys = new boolean[4];
     setBackground(Color.LIGHT_GRAY);
     setVisible(true);
@@ -114,7 +114,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.setYSpeed(3);
         bombSpeed = 2000;
         moleSpeed = 2000;
-        moleRemoveSpeed = 1000;
+        moleRemoveSpeed = 1500;
         bombRemoveSpeed = 2000;
         lev2 = false;
       }
@@ -123,9 +123,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
       if (lev3) {
         hammer.setXSpeed(5);
         hammer.setYSpeed(4);
-        bombSpeed = 1000;
-        moleSpeed = 2000;
-        moleRemoveSpeed = 750;
+        bombSpeed = 1500;
+        moleSpeed = 1500;
+        moleRemoveSpeed = 1000;
         bombRemoveSpeed = 2500;
         lev3 = false;
       }
@@ -195,6 +195,13 @@ public class Game extends Canvas implements KeyListener, Runnable {
       graphToBack.drawString("Press 1 for Level 1", 225, 240);
       graphToBack.drawString("Press 2 for Level 2", 225, 265);
       graphToBack.drawString("Press 3 for Level 3", 225, 290);
+
+      while (grid.getMoles().size() > 0) {
+        grid.removeMole(0);
+      }
+      while (grid.getBombs().size() > 0) {
+        grid.removeBomb(0);
+      }
 
       if (keys[1])
       {
