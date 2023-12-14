@@ -10,6 +10,8 @@ public class Mole extends Thing
 
   private Image image;
   private int time;
+  private int squishTime;
+  private boolean squished;
 
   public Mole(int x, int y, int w, int h)
   {
@@ -30,9 +32,29 @@ public class Mole extends Thing
     return time;
   }
 
+  public void setSquished()
+  {
+    squished = true;
+    setY(getY() + 34);
+    setHeight(40);
+  }
+
+  public boolean getSquished()
+  {
+    return squished;
+  }
+
+  public int getSquishTime()
+  {
+    return squishTime;
+  }
+
   public void draw(Graphics window)
   {
     window.drawImage(image, getX(), getY(), getWidth(), getHeight(),null);
     time += 5;
+    if (squished) {
+      squishTime += 5;
+    }
   }
 }

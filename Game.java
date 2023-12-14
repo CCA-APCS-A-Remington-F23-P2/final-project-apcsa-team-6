@@ -134,8 +134,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.pressed();
         for (int i = 0; i < grid.getMoles().size(); i++){
           if (hammer.didOverlap(grid.getMoles().get(i))){
-            score++;
-            grid.removeMole(i);
+            if (!grid.getMoles().get(i).getSquished()) {
+              grid.getMoles().get(i).setSquished();
+              score++;
+            }
           }
         }
         for (int i = 0; i < grid.getBombs().size(); i++){
@@ -146,6 +148,11 @@ public class Game extends Canvas implements KeyListener, Runnable {
       }
       else {
         hammer.released();
+      }
+      for (int i = 0; i < grid.getMoles().size(); i++){
+        if (grid.getMoles().get(i).getSquished() && grid.getMoles().get(i).getSquishTime() == 50) {
+          grid.removeMole(i);
+        }
       }
 
       // change direction if hammer leaves the grid
