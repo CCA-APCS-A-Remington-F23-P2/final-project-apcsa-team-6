@@ -52,8 +52,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
     lev3 = false;
     bombSpeed = 0;
     moleSpeed = 0;
-    removeSpeed = 0;
-
+    moleRemoveSpeed = 0;
+    bombRemoveSpeed = 0;
+    
     keys = new boolean[4];
     setBackground(Color.LIGHT_GRAY);
     setVisible(true);
