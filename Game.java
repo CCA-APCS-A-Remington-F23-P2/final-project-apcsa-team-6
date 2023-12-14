@@ -28,8 +28,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
   private boolean lev3;
   private int bombSpeed;
   private int moleSpeed;
-  private int removeSpeed;
-
+  private int moleRemoveSpeed;
+  private int bombRemoveSpeed;
+  
   private BufferedImage back;
   private boolean[] keys;
 
