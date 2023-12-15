@@ -134,15 +134,18 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.pressed();
         for (int i = 0; i < grid.getMoles().size(); i++){
           if (hammer.didOverlap(grid.getMoles().get(i))){
-            if (!grid.getMoles().get(i).getSquished()) {
-              grid.getMoles().get(i).setSquished();
+            if (!grid.getMoles().get(i).getSquishploded()) {
+              grid.getMoles().get(i).setSquishploded();
               score++;
             }
           }
         }
         for (int i = 0; i < grid.getBombs().size(); i++){
           if (hammer.didOverlap(grid.getBombs().get(i))){
-            gameOver = true;
+            if (!grid.getBombs().get(i).getSquishploded()) {
+              grid.getBombs().get(i).setSquishploded();
+            }
+            //gameOver = true;
           }
         }
       }
@@ -150,10 +153,16 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.released();
       }
       for (int i = 0; i < grid.getMoles().size(); i++){
-        if (grid.getMoles().get(i).getSquished() && grid.getMoles().get(i).getSquishTime() == 50) {
+        if (grid.getMoles().get(i).getSquishploded() && grid.getMoles().get(i).getSquishplodeTime() == 50) {
           grid.removeMole(i);
         }
       }
+      for (int i = 0; i < grid.getBombs().size(); i++){
+        if (grid.getBombs().get(i).getSquishploded() && grid.getBombs().get(i).getSquishplodeTime() == 50) {
+          gameOver = true;
+        }
+      }
+
 
       // change direction if hammer leaves the grid
       if (hammer.getX() < 100 || hammer.getX() + hammer.getWidth() > 455){
