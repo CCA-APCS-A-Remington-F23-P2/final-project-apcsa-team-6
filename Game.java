@@ -30,6 +30,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
   private int moleSpeed;
   private int moleRemoveSpeed;
   private int bombRemoveSpeed;
+  private String levString;
 
   private BufferedImage back;
   private boolean[] keys;
@@ -54,6 +55,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
     moleSpeed = 0;
     moleRemoveSpeed = 0;
     bombRemoveSpeed = 0;
+    levString = "";
 
     keys = new boolean[4];
     setBackground(Color.LIGHT_GRAY);
@@ -97,6 +99,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
     if (!gameOver && !gameStart) {
       graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 15, 15);
+      graphToBack.drawString(levString, 230,15);
 
       if (lev1) {
         hammer.setXSpeed(3);
@@ -106,6 +109,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
         moleRemoveSpeed = 2000;
         bombRemoveSpeed = 1000;
         lev1 = false;
+        levString = "Level 1";
       }
 
       //level 2
@@ -117,6 +121,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
         moleRemoveSpeed = 1500;
         bombRemoveSpeed = 2000;
         lev2 = false;
+        levString = "Level 2";
       }
 
       //level 3
@@ -128,6 +133,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
         moleRemoveSpeed = 1000;
         bombRemoveSpeed = 2500;
         lev3 = false;
+        levString = "Level 3";
       }
 
       if (keys[0]) {
@@ -145,7 +151,6 @@ public class Game extends Canvas implements KeyListener, Runnable {
             if (!grid.getBombs().get(i).getSquishploded()) {
               grid.getBombs().get(i).setSquishploded();
             }
-            //gameOver = true;
           }
         }
       }
