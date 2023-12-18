@@ -188,6 +188,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
       for (int i = 0; i < grid.getBombs().size(); i++){
         if (grid.getBombs().get(i).getSquishploded() && grid.getBombs().get(i).getSquishplodeTime() == 50) {
           gameOver = true;
+          specialMode = false;
         }
       }
 
@@ -233,13 +234,14 @@ public class Game extends Canvas implements KeyListener, Runnable {
       if (score > highScore) {
         highScore = score;
       }
-      specialMode = false;
       graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 250, 190);
       graphToBack.drawString("High Score: " + highScore, 240, 215);
       graphToBack.drawString("Press 1 for Level 1", 225, 240);
       graphToBack.drawString("Press 2 for Level 2", 225, 265);
       graphToBack.drawString("Press 3 for Level 3", 225, 290);
+      graphToBack.drawString("Press y for Special Mode", 210, 320);
+
 
       while (grid.getMoles().size() > 0) {
         grid.removeMole(0);
@@ -277,10 +279,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
         }
       }
       if (specialMode){
-        graphToBack.drawString("yes", 380, 235);
+        graphToBack.drawString("yes", 380, 320);
       }
       else{
-        graphToBack.drawString("no", 380, 235);
+        graphToBack.drawString("no", 380, 320);
       }
     }
 
