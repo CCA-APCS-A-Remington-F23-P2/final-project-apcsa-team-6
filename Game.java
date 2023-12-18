@@ -120,6 +120,8 @@ public class Game extends Canvas implements KeyListener, Runnable {
       graphToBack.drawString("Score: " + score, 15, 15);
       graphToBack.drawString(levString, 250,75);
 
+      if (specialMode) grid.setSpec(true); else grid.setSpec(false);
+
       if (lev1) {
         hammer.setXSpeed(3);
         hammer.setYSpeed(2);
@@ -155,9 +157,6 @@ public class Game extends Canvas implements KeyListener, Runnable {
         levString = "Level 3";
       }
 
-      if (specialMode){
-        graphToBack.drawString("testing special mode",100,15);
-      }
 
       if (keys[0]) {
         hammer.pressed();

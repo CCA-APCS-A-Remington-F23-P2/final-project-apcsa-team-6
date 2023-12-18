@@ -13,13 +13,19 @@ public class Mole extends Thing
   private int squishplodeTime;
   private boolean squishploded;
 
-  public Mole(int x, int y, int w, int h)
+  public Mole(int x, int y, int w, int h, boolean b)
   {
     super(x, y, w, h);
     try
     {
-      URL url = getClass().getResource("media/mole.png");
-      image = ImageIO.read(url);
+      if (!b){
+        URL url = getClass().getResource("media/mole.png");
+        image = ImageIO.read(url);
+      }
+      else{
+        URL url = getClass().getResource("media/santamole.png");
+        image = ImageIO.read(url);
+      }
     }
     catch(Exception e)
     {
