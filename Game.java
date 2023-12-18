@@ -26,6 +26,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
   private boolean lev1;
   private boolean lev2;
   private boolean lev3;
+  private boolean specialMode;
   private int bombSpeed;
   private int moleSpeed;
   private int moleRemoveSpeed;
@@ -51,13 +52,14 @@ public class Game extends Canvas implements KeyListener, Runnable {
     lev1 = false;
     lev2 = false;
     lev3 = false;
+    specialMode = false;
     bombSpeed = 0;
     moleSpeed = 0;
     moleRemoveSpeed = 0;
     bombRemoveSpeed = 0;
     levString = "";
 
-    keys = new boolean[4];
+    keys = new boolean[5];
     setBackground(Color.LIGHT_GRAY);
     setVisible(true);
     new Thread(this).start();
@@ -81,6 +83,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
       graphToBack.drawString("Press 1 for Level 1", 225, 160);
       graphToBack.drawString("Press 2 for Level 2", 225, 185);
       graphToBack.drawString("Press 3 for Level 3", 225, 210);
+      graphToBack.drawString("Press y for Special Mode", 210, 235);
 
       if (keys[1]) {
         lev1 = true;
@@ -94,12 +97,28 @@ public class Game extends Canvas implements KeyListener, Runnable {
         lev3 = true;
         gameStart = false;
       } else lev3 = false;
+      if (keys[4]){
+        if (!specialMode) {
+          specialMode = true;
+          keys[4] = false;
+        }
+        else {
+          specialMode = false;
+          keys[4] = false;
+        }
+      }
+      if (specialMode){
+        graphToBack.drawString("yes", 380, 235);
+      }
+      else{
+        graphToBack.drawString("no", 380, 235);
+      }
     }
 
     if (!gameOver && !gameStart) {
       graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 15, 15);
-      graphToBack.drawString(levString, 230,15);
+      graphToBack.drawString(levString, 250,75);
 
       if (lev1) {
         hammer.setXSpeed(3);
@@ -134,6 +153,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
         bombRemoveSpeed = 2500;
         lev3 = false;
         levString = "Level 3";
+      }
+
+      if (specialMode){
+        graphToBack.drawString("testing special mode",100,15);
       }
 
       if (keys[0]) {
@@ -210,6 +233,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
       if (score > highScore) {
         highScore = score;
       }
+      specialMode = false;
       graphToBack.setColor(Color.BLACK);
       graphToBack.drawString("Score: " + score, 250, 190);
       graphToBack.drawString("High Score: " + highScore, 240, 215);
@@ -242,6 +266,9 @@ public class Game extends Canvas implements KeyListener, Runnable {
         score = 0;
         lev3 = true;
       }
+      if (keys[4]){
+        specialMode = true;
+      }
     }
 
     twoDGraph.drawImage(back, null, 0, 0);
@@ -265,6 +292,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
     {
       keys[3] = true;
     }
+    if (e.getKeyCode() == KeyEvent.VK_Y)
+    {
+      keys[4] = true;
+    }
     repaint();
   }
 
@@ -285,6 +316,10 @@ public class Game extends Canvas implements KeyListener, Runnable {
     if (e.getKeyCode() == KeyEvent.VK_3)
     {
       keys[3] = false;
+    }
+    if (e.getKeyCode() == KeyEvent.VK_Y)
+    {
+      keys[4] = false;
     }
     repaint();
   }
