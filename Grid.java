@@ -11,9 +11,11 @@ public class Grid
   private List<Hole> holes;
   private List <Mole> moles;
   private List <Bomb> bombs;
+  private boolean specMode;
 
   public Grid(int size)
   {
+    specMode = false;
     holes = new ArrayList<Hole>();
     moles = new ArrayList<Mole>();
     bombs = new ArrayList<Bomb>();
@@ -23,6 +25,11 @@ public class Grid
         holes.add(new Hole(100 + j * 85, 100 + i * 85, 80, 80));
       }
     }  
+  }
+
+  public void setSpec(boolean b)
+  {
+    specMode = b;
   }
 
   public List<Mole> getMoles()
@@ -42,7 +49,12 @@ public class Grid
         int rand = (int) (Math.random() * holes.size());
         if (!holes.get(rand).getOccupied())
         {
-          moles.add(new Mole(holes.get(rand).getX(), holes.get(rand).getY(), 80, 80));
+          if (specMode){
+            moles.add(new Mole(holes.get(rand).getX(), holes.get(rand).getY(), 80, 80, true));
+          }
+          else{
+            moles.add(new Mole(holes.get(rand).getX(), holes.get(rand).getY(), 80, 80, false));
+          }
           holes.get(rand).setOccupied();
           break;
         }
