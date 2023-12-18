@@ -267,7 +267,20 @@ public class Game extends Canvas implements KeyListener, Runnable {
         lev3 = true;
       }
       if (keys[4]){
-        specialMode = true;
+        if (!specialMode) {
+          specialMode = true;
+          keys[4] = false;
+        }
+        else {
+          specialMode = false;
+          keys[4] = false;
+        }
+      }
+      if (specialMode){
+        graphToBack.drawString("yes", 380, 235);
+      }
+      else{
+        graphToBack.drawString("no", 380, 235);
       }
     }
 
