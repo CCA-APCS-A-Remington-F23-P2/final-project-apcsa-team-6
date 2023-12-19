@@ -187,7 +187,6 @@ public class Game extends Canvas implements KeyListener, Runnable {
       for (int i = 0; i < grid.getBombs().size(); i++){
         if (grid.getBombs().get(i).getSquishploded() && grid.getBombs().get(i).getSquishplodeTime() == 50) {
           gameOver = true;
-          specialMode = false;
         }
       }
 
