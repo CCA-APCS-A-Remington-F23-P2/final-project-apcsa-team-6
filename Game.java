@@ -239,7 +239,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
       graphToBack.drawString("Press 1 for Level 1", 225, 240);
       graphToBack.drawString("Press 2 for Level 2", 225, 265);
       graphToBack.drawString("Press 3 for Level 3", 225, 290);
-      graphToBack.drawString("Press y for Special Mode", 210, 320);
+      graphToBack.drawString("Press y for Santa mode", 210, 320);
 
 
       while (grid.getMoles().size() > 0) {
