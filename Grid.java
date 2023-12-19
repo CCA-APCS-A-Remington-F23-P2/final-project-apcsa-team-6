@@ -86,8 +86,8 @@ public class Grid
           }
           else{
           bombs.add(new Bomb(holes.get(rand).getX(), holes.get(rand).getY(), 80, 80, false));
-          holes.get(rand).setOccupied();
           }
+          holes.get(rand).setOccupied();
           break;
         }
       }
