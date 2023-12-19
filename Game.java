@@ -83,7 +83,7 @@ public class Game extends Canvas implements KeyListener, Runnable {
       graphToBack.drawString("Press 1 for Level 1", 225, 160);
       graphToBack.drawString("Press 2 for Level 2", 225, 185);
       graphToBack.drawString("Press 3 for Level 3", 225, 210);
-      graphToBack.drawString("Press y for Special Mode", 210, 235);
+      graphToBack.drawString("Press y for Santa Mode", 210, 235);
 
       if (keys[1]) {
         lev1 = true;
