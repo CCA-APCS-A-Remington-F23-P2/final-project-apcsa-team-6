@@ -12,15 +12,23 @@ public class Bomb extends Thing
   private int time;
   private int squishplodeTime;
   private boolean squishploded;
+  private boolean spec;
 
-  public Bomb(int x, int y, int w, int h)
+  public Bomb(int x, int y, int w, int h, boolean b)
   {
     super(x, y, w, h);
     time = 0;
+    spec = b;
     try
     {
-      URL url = getClass().getResource("media/bomb.png");
-      image = ImageIO.read(url);
+      if (!b){
+        URL url = getClass().getResource("media/bomb.png");
+        image = ImageIO.read(url);
+      }
+      else{
+        URL url = getClass().getResource("media/icebomb.png");
+        image = ImageIO.read(url);
+      }
     }
     catch(Exception e)
     {
@@ -39,8 +47,14 @@ public class Bomb extends Thing
     // insert explosion image
     try
       {
-        URL url = getClass().getResource("media/bomb2.png");
-        image = ImageIO.read(url);
+        if (!spec){
+          URL url = getClass().getResource("media/bomb2.png");
+          image = ImageIO.read(url);
+        }
+        else{
+          URL url = getClass().getResource("media/icebomb2.png");
+          image = ImageIO.read(url);
+        }
       }
       catch(Exception e)
       {

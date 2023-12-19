@@ -81,8 +81,13 @@ public class Grid
         int rand = (int) (Math.random() * holes.size());
         if (!holes.get(rand).getOccupied())
         {
-          bombs.add(new Bomb(holes.get(rand).getX(), holes.get(rand).getY(), 80, 80));
+          if (specMode){
+            bombs.add(new Bomb(holes.get(rand).getX(), holes.get(rand).getY(), 80, 80, true));
+          }
+          else{
+          bombs.add(new Bomb(holes.get(rand).getX(), holes.get(rand).getY(), 80, 80, false));
           holes.get(rand).setOccupied();
+          }
           break;
         }
       }
