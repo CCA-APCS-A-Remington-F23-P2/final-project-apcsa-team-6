@@ -180,12 +180,13 @@ public class Game extends Canvas implements KeyListener, Runnable {
         hammer.released();
       }
       for (int i = 0; i < grid.getMoles().size(); i++){
-        if (grid.getMoles().get(i).getSquishploded() && grid.getMoles().get(i).getSquishplodeTime() == 50) {
+        if (grid.getMoles().get(i).getSquishploded() && grid.getMoles().get(i).getSquishplodeTime() >= 50) {
           grid.removeMole(i);
         }
       }
       for (int i = 0; i < grid.getBombs().size(); i++){
-        if (grid.getBombs().get(i).getSquishploded() && grid.getBombs().get(i).getSquishplodeTime() == 50) {
+        if (grid.getBombs().get(i).getSquishploded() && grid.getBombs().get(i).getSquishplodeTime() >= 50) {
+          grid.removeBomb(i);
           gameOver = true;
         }
       }
@@ -212,12 +213,12 @@ public class Game extends Canvas implements KeyListener, Runnable {
 
       // remove moles and bombs
       for (int i = 0; i < grid.getMoles().size(); i++){
-        if (grid.getMoles().get(i).getTime() == moleRemoveSpeed){
+        if (grid.getMoles().get(i).getTime() >= moleRemoveSpeed){
           grid.removeMole(i);
         }
       }
       for (int j = 0; j < grid.getBombs().size(); j++){
-        if (grid.getBombs().get(j).getTime() == bombRemoveSpeed){
+        if (grid.getBombs().get(j).getTime() >= bombRemoveSpeed){
           grid.removeBomb(j);
         }
       }
@@ -239,14 +240,6 @@ public class Game extends Canvas implements KeyListener, Runnable {
       graphToBack.drawString("Press 2 for Level 2", 225, 265);
       graphToBack.drawString("Press 3 for Level 3", 225, 290);
       graphToBack.drawString("Press y for Santa mode", 210, 320);
-
-
-      while (grid.getMoles().size() > 0) {
-        grid.removeMole(0);
-      }
-      while (grid.getBombs().size() > 0) {
-        grid.removeBomb(0);
-      }
 
       if (keys[1])
       {

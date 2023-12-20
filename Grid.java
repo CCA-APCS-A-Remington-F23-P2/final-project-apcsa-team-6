@@ -68,8 +68,8 @@ public class Grid
     int yPos = moles.get(i).getY();
     moles.remove(i);
 
-    for (Hole h: holes) {
-      if (h.getX() == xPos && h.getY() == yPos) {
+    for (Hole h : holes) {
+      if (h.getX() == xPos && (h.getY() == yPos || h.getY() == yPos - 34)) {
         h.setUnoccupied();
       }
     }
@@ -98,9 +98,9 @@ public class Grid
   {
     int xPos = bombs.get(i).getX();
     int yPos = bombs.get(i).getY();
-      bombs.remove(i);
+    bombs.remove(i);
 
-    for (Hole h: holes) {
+    for (Hole h : holes) {
       if (h.getX() == xPos && h.getY() == yPos) {
         h.setUnoccupied();
       }
